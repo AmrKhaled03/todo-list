@@ -86,75 +86,78 @@ class _HomeScreenState extends State<HomeScreen> {
           backgroundColor: AppColors.logoColor,
         ),
         backgroundColor: Colors.white,
-        body: Padding(
-          padding: const EdgeInsets.fromLTRB(20, 40, 20, 40),
-          child: Column(
-            children: [
-              Container(
-                decoration: const BoxDecoration(color: Colors.transparent),
-                child: Column(
-                  children: [
-                    TextField(
-                      controller: titleController,
-                      decoration: InputDecoration(
-                        labelText: "Enter Todo",
-                        labelStyle: const TextStyle(color: AppColors.logoColor),
-                        hintText: 'Todo',
-                        hintStyle: const TextStyle(color: AppColors.logoColor),
-                        focusColor: AppColors.logoColor,
-                        focusedBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(color: AppColors.logoColor),
-                        ),
-                        errorBorder: const OutlineInputBorder(
-                          borderSide: BorderSide(color: Colors.red),
-                        ),
-                        focusedErrorBorder: const OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.red)),
-                        enabledBorder: OutlineInputBorder(
-                          borderRadius: BorderRadius.circular(20),
-                          borderSide: const BorderSide(
-                            color: AppColors.logoColor,
+        body: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(20, 40, 20, 40),
+            child: Column(
+              children: [
+                Container(
+                  decoration: const BoxDecoration(color: Colors.transparent),
+                  child: Column(
+                    children: [
+                      TextField(
+                        controller: titleController,
+                        decoration: InputDecoration(
+                          labelText: "Enter Todo",
+                          labelStyle:
+                              const TextStyle(color: AppColors.logoColor),
+                          hintText: 'Todo',
+                          hintStyle:
+                              const TextStyle(color: AppColors.logoColor),
+                          focusColor: AppColors.logoColor,
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(color: AppColors.logoColor),
                           ),
-                        ),
-                      ),
-                      style: const TextStyle(color: AppColors.logoColor),
-                    ),
-                    const SizedBox(height: 10),
-                    SizedBox(
-                      width: double.infinity,
-                      child: TextButton(
-                        style: TextButton.styleFrom(
-                          backgroundColor: AppColors.logoColor,
-                          padding: const EdgeInsets.symmetric(vertical: 15),
-                          shape: RoundedRectangleBorder(
+                          errorBorder: const OutlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red),
+                          ),
+                          focusedErrorBorder: const OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.red)),
+                          enabledBorder: OutlineInputBorder(
                             borderRadius: BorderRadius.circular(20),
+                            borderSide: const BorderSide(
+                              color: AppColors.logoColor,
+                            ),
                           ),
                         ),
-                        onPressed: addTodo,
-                        child: const Text(
-                          "Add Todo",
-                          style: TextStyle(color: Colors.white),
+                        style: const TextStyle(color: AppColors.logoColor),
+                      ),
+                      const SizedBox(height: 10),
+                      SizedBox(
+                        width: double.infinity,
+                        child: TextButton(
+                          style: TextButton.styleFrom(
+                            backgroundColor: AppColors.logoColor,
+                            padding: const EdgeInsets.symmetric(vertical: 15),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(20),
+                            ),
+                          ),
+                          onPressed: addTodo,
+                          child: const Text(
+                            "Add Todo",
+                            style: TextStyle(color: Colors.white),
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
-              ),
-              const SizedBox(height: 20),
-              todos.isEmpty
-                  ? Container(
-                      margin: const EdgeInsets.all(20),
-                      height: 100,
-                      width: 200,
-                      alignment: Alignment.center,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(25),
-                        border: Border.all(color: AppColors.logoColor),
-                      ),
-                      child: const Text("No List Found"),
-                    )
-                  : Expanded(
-                      child: ListView.separated(
+                const SizedBox(height: 20),
+                todos.isEmpty
+                    ? Container(
+                        margin: const EdgeInsets.all(20),
+                        height: 100,
+                        width: 200,
+                        alignment: Alignment.center,
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(25),
+                          border: Border.all(color: AppColors.logoColor),
+                        ),
+                        child: const Text("No List Found"),
+                      )
+                    : ListView.separated(
+                        physics: const NeverScrollableScrollPhysics(),
                         shrinkWrap: true,
                         itemBuilder: (_, index) {
                           AppTodo todo = todos[index];
@@ -163,7 +166,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            tileColor: Colors.black,
+                            tileColor: Colors.grey[850],
                             title: Text(
                               todo.title!,
                               style: TextStyle(
@@ -235,8 +238,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         },
                         itemCount: todos.length,
                       ),
-                    ),
-            ],
+              ],
+            ),
           ),
         ),
       ),
